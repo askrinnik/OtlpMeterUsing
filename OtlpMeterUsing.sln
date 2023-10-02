@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsolePullApp", "ConsolePu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsolePushApp", "ConsolePushApp\ConsolePushApp.csproj", "{897ECBA2-4A4B-46B5-8FA8-3402D84ED8C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication1", "WebApplication1\WebApplication1.csproj", "{48C9216F-D1BE-46F5-9D7D-C578C0B7F474}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplication1", "WebApplication1\WebApplication1.csproj", "{48C9216F-D1BE-46F5-9D7D-C578C0B7F474}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebPullApp", "WebPullApp\WebPullApp.csproj", "{CA13FE3D-87A7-46AE-9CD3-788C0463DD5F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{48C9216F-D1BE-46F5-9D7D-C578C0B7F474}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{48C9216F-D1BE-46F5-9D7D-C578C0B7F474}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{48C9216F-D1BE-46F5-9D7D-C578C0B7F474}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA13FE3D-87A7-46AE-9CD3-788C0463DD5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA13FE3D-87A7-46AE-9CD3-788C0463DD5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA13FE3D-87A7-46AE-9CD3-788C0463DD5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA13FE3D-87A7-46AE-9CD3-788C0463DD5F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
