@@ -1,4 +1,6 @@
 using OpenTelemetry.Metrics;
+using OpenTelemetry.Resources;
+using WebPullApp;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,8 +10,12 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddOpenTelemetry()
+builder.Services.AddSingleton<MyInstruments>();
+
+builder.Services.AddOpenTelemetry() //Add OpenTelemetry.Extensions.Hosting nuget package
+    .ConfigureResource(r => r.AddService(MyInstruments.MeterName, serviceInstanceId: Environment.MachineName))
     .WithMetrics(b => b
+        .AddMeter(MyInstruments.MeterName)
         .AddAspNetCoreInstrumentation() // Add OpenTelemetry.Instrumentation.AspNetCore nuget package
         .AddHttpClientInstrumentation() // Add OpenTelemetry.Instrumentation.Http nuget package
         .AddRuntimeInstrumentation() // Add OpenTelemetry.Instrumentation.Runtime nuget package

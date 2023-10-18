@@ -1,33 +1,45 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace WebPullApp.Controllers
+namespace WebPullApp.Controllers;
+
+[ApiController]
+[Route("[controller]")]
+public class WeatherForecastController : ControllerBase
 {
-    [ApiController]
-    [Route("[controller]")]
-    public class WeatherForecastController : ControllerBase
+    private readonly ILogger<WeatherForecastController> _logger;
+    private readonly MyInstruments _myInstruments;
+
+    public WeatherForecastController(ILogger<WeatherForecastController> logger, MyInstruments myInstruments)
     {
-        private static readonly string[] Summaries = new[]
-        {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };
+        _logger = logger;
+        _myInstruments = myInstruments;
+    }
 
-        private readonly ILogger<WeatherForecastController> _logger;
+    [HttpGet(Name = "GetWeatherForecast")]
+    public IEnumerable<WeatherForecast> Get()
+    {
+        _myInstruments.RequestsCounter.Add(1);
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
-        {
-            _logger = logger;
-        }
-
-        [HttpGet(Name = "GetWeatherForecast")]
-        public IEnumerable<WeatherForecast> Get()
-        {
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+        var weatherForecasts = Enumerable.Range(1, 5).Select(index =>
             {
-                Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
+                var temperatureC = Random.Shared.Next(-20, 40);
+                return new WeatherForecast
+                {
+                    Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
+                    TemperatureC = temperatureC,
+                    Summary = GetSummary(temperatureC)
+                };
             })
             .ToArray();
-        }
+        _myInstruments.SetTodayTemperature(weatherForecasts.First().TemperatureC, weatherForecasts.First().Summary!);
+        return weatherForecasts;
     }
+
+    private static string GetSummary(int temperatureC) =>
+        temperatureC switch
+        {
+            < 10 => "Cold",
+            > 30 => "Hot",
+            _ => "Normal"
+        };
 }
