@@ -23,6 +23,7 @@ services:
             - "3000:3000" #UI
         volumes:
             - grafana:/var/lib/grafana
+            - ./grafana/provisioning:/etc/grafana/provisioning
         environment:
             - GF_AUTH_ANONYMOUS_ENABLED=true
             - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
