@@ -21,7 +21,7 @@
       }
     ]
   },
-  "description": "Shows ASP.NET metrics from OpenTelemetry NuGet",
+  "description": "Shows .NET and ASP.NET metrics scraped by Prometheus from an ASP.NET application",
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
@@ -1720,7 +1720,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "histogram_quantile(0.90, sum(rate(http_client_duration_ms_bucket{job=\"$job\", instance=\"$instance\", net_peer_name=\"$http_client_peer_name\"}[$__rate_interval])) by (le))",
+          "expr": "histogram_quantile(0.90, sum(rate(http_client_duration_milliseconds_bucket{job=\"$job\", instance=\"$instance\", net_peer_name=\"$http_client_peer_name\"}[$__rate_interval])) by (le))",
           "hide": false,
           "legendFormat": "p90",
           "range": true,
@@ -1732,7 +1732,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "histogram_quantile(0.95, sum(rate(http_client_duration_ms_bucket{job=\"$job\", instance=\"$instance\", net_peer_name=\"$http_client_peer_name\"}[$__rate_interval])) by (le))",
+          "expr": "histogram_quantile(0.95, sum(rate(http_client_duration_milliseconds_bucket{job=\"$job\", instance=\"$instance\", net_peer_name=\"$http_client_peer_name\"}[$__rate_interval])) by (le))",
           "hide": false,
           "legendFormat": "p95",
           "range": true,
@@ -1744,7 +1744,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "histogram_quantile(0.98, sum(rate(http_client_duration_ms_bucket{job=\"$job\", instance=\"$instance\", net_peer_name=\"$http_client_peer_name\"}[$__rate_interval])) by (le))",
+          "expr": "histogram_quantile(0.98, sum(rate(http_client_duration_milliseconds_bucket{job=\"$job\", instance=\"$instance\", net_peer_name=\"$http_client_peer_name\"}[$__rate_interval])) by (le))",
           "hide": false,
           "legendFormat": "p98",
           "range": true,
@@ -1756,7 +1756,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "histogram_quantile(0.99, sum(rate(http_client_duration_ms_bucket{job=\"$job\", instance=\"$instance\", net_peer_name=\"$http_client_peer_name\"}[$__rate_interval])) by (le))",
+          "expr": "histogram_quantile(0.99, sum(rate(http_client_duration_milliseconds_bucket{job=\"$job\", instance=\"$instance\", net_peer_name=\"$http_client_peer_name\"}[$__rate_interval])) by (le))",
           "hide": false,
           "legendFormat": "p99",
           "range": true,
@@ -1768,7 +1768,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "histogram_quantile(0.999, sum(rate(http_client_duration_ms_bucket{job=\"$job\", instance=\"$instance\", net_peer_name=\"$http_client_peer_name\"}[$__rate_interval])) by (le))",
+          "expr": "histogram_quantile(0.999, sum(rate(http_client_duration_milliseconds_bucket{job=\"$job\", instance=\"$instance\", net_peer_name=\"$http_client_peer_name\"}[$__rate_interval])) by (le))",
           "hide": false,
           "legendFormat": "p99.9",
           "range": true,
@@ -1921,7 +1921,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "sum(rate(http_client_duration_ms_bucket{job=\"$job\", instance=\"$instance\", net_peer_name=\"$http_client_peer_name\", http_status_code=~\"4..\"}[$__rate_interval]) or vector(0)) / sum(rate(http_client_duration_ms_bucket{job=\"$job\", instance=\"$instance\", net_peer_name=\"$http_client_peer_name\"}[$__rate_interval]))",
+          "expr": "sum(rate(http_client_duration_milliseconds_bucket{job=\"$job\", instance=\"$instance\", net_peer_name=\"$http_client_peer_name\", http_status_code=~\"4..\"}[$__rate_interval]) or vector(0)) / sum(rate(http_client_duration_milliseconds_bucket{job=\"$job\", instance=\"$instance\", net_peer_name=\"$http_client_peer_name\"}[$__rate_interval]))",
           "hide": false,
           "legendFormat": "4XX",
           "range": true,
@@ -2049,7 +2049,7 @@
   "timepicker": {},
   "timezone": "",
   "title": "ASP.NET OTEL Metrics",
-  "uid": "KdDACDp4z",
+  "uid": "KdDACDp4a",
   "version": 1,
   "weekStart": ""
 }

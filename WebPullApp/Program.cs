@@ -11,6 +11,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<MyInstruments>();
+builder.Services.AddHostedService<WeatherClient>();
 
 builder.Services.AddOpenTelemetry() //Add OpenTelemetry.Extensions.Hosting nuget package
     .ConfigureResource(r => r.AddService(MyInstruments.MeterName, serviceInstanceId: Environment.MachineName))

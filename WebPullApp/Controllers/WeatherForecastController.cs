@@ -6,19 +6,25 @@ namespace WebPullApp.Controllers;
 [Route("[controller]")]
 public class WeatherForecastController : ControllerBase
 {
-    private readonly ILogger<WeatherForecastController> _logger;
     private readonly MyInstruments _myInstruments;
 
-    public WeatherForecastController(ILogger<WeatherForecastController> logger, MyInstruments myInstruments)
+    public WeatherForecastController(MyInstruments myInstruments)
     {
-        _logger = logger;
         _myInstruments = myInstruments;
     }
 
     [HttpGet(Name = "GetWeatherForecast")]
-    public IEnumerable<WeatherForecast> Get()
+    public ActionResult<IEnumerable<WeatherForecast>> Get()
     {
         _myInstruments.RequestsCounter.Add(1);
+
+        switch (Random.Shared.Next(0, 10))
+        {
+            case 0:
+                return NotFound();
+            case 1:
+                return StatusCode(500);
+        }
 
         var weatherForecasts = Enumerable.Range(1, 5).Select(index =>
             {
