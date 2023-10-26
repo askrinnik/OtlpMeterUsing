@@ -9,7 +9,7 @@ var meter = new Meter("MeterUsing.Human");
 using var meterProvider = Sdk.CreateMeterProviderBuilder()
     .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService(meter.Name))
     .AddMeter(meter.Name)
-    .AddOtlpExporter((exporterOptions, metricReaderOptions) =>
+    .AddOtlpExporter((exporterOptions, metricReaderOptions) => // Add OpenTelemetry.Exporter.OpenTelemetryProtocol nuget package
     {
         //exporterOptions.Endpoint = new Uri("http://localhost:4317/");
         metricReaderOptions.PeriodicExportingMetricReaderOptions.ExportIntervalMilliseconds = 1000;

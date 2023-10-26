@@ -6,7 +6,7 @@ volumes:
 
 services:
     otel-collector:
-        image: otel/opentelemetry-collector-contrib
+        image: otel/opentelemetry-collector-contrib:latest
         hostname: otel-collector
         command: ["--config=/etc/otel-collector-config.yaml"]
         volumes:

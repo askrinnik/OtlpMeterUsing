@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.Metrics;
 
-namespace WebApplication1;
+namespace WebPushApp;
 
 public class MyInstruments : IDisposable
 {

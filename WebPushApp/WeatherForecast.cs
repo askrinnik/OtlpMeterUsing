@@ -1,4 +1,4 @@
-namespace WebApplication1
+namespace WebPushApp
 {
     public class WeatherForecast
     {
