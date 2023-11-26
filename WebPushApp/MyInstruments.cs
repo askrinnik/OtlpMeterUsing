@@ -1,9 +1,11 @@
 ﻿using System.Diagnostics.Metrics;
+using OpenTelemetry.Metrics;
 
 namespace WebPushApp;
 
 public class MyInstruments : IDisposable
 {
+    internal const string GlobalSystemName = "MeterUsing.Demo";
     internal const string MeterName = "MeterUsing.AspNetCore";
     private readonly Meter _meter;
     private int _todayTemperature;
@@ -33,4 +35,12 @@ public class MyInstruments : IDisposable
         _meter.Dispose();
         GC.SuppressFinalize(this);
     }
+}
+
+public static class MeterProviderBuilderExtensions
+{
+    public static MeterProviderBuilder AddMyInstruments(this MeterProviderBuilder builder) =>
+        builder
+            .AddMeter(MyInstruments.MeterName)
+            .AddInstrumentation<MyInstruments>();
 }
