@@ -5,6 +5,7 @@ namespace WebPullApp;
 
 public class MyInstruments : IDisposable
 {
+    internal const string GlobalSystemName = "MeterUsing.Demo.Pull";
     internal const string MeterName = "MeterUsing.AspNetCore";
     private readonly Meter _meter;
     private int _todayTemperature;

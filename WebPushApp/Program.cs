@@ -15,7 +15,11 @@ builder.Services.AddHostedService<WeatherClient>();
 builder.Services.AddOpenTelemetry() //Add OpenTelemetry.Extensions.Hosting nuget package
     .ConfigureResource(r => r
         .AddService(MyInstruments.MeterName, serviceInstanceId: Environment.MachineName)
-        .AddAttributes(new Dictionary<string, object> { ["SystemName"] = MyInstruments.GlobalSystemName })) // That is visible in the target_info separate metric.
+        .AddAttributes(new Dictionary<string, object>
+        {
+            ["EnvironmentName"] = MyInstruments.GlobalSystemName, // That is visible in the target_info separate metric.
+        })
+        .AddTelemetrySdk()) // add resource attributes about OpenTelemetry.Sdk (optional)
     .WithMetrics(meterBuilder => meterBuilder
         .AddMyInstruments()
         .AddAspNetCoreInstrumentation() // Add OpenTelemetry.Instrumentation.AspNetCore nuget package
